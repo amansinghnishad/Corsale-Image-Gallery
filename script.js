@@ -11,8 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
   document.addEventListener('DOMContentLoaded', function() {
     var cards = Array.from(document.querySelectorAll('.card'));
     var activeCardIndex = 0;
-    var textContainer = document.getElementById('text-container');
-  
+    var heading = document.getElementById('heading');
+    var paragraph = document.getElementById('paragraph');
+
     function updateCards() {
       cards.forEach(function(card, index) {
         if (index === activeCardIndex) {
@@ -34,16 +35,21 @@ document.addEventListener('DOMContentLoaded', function() {
       cards.forEach(function(card, index) {
         if (index === activeCardIndex) {
           card.classList.add('active');
-          textContainer.textContent = card.getAttribute('data-text');
-          textContainer.style.animation = 'none';
+          var text = card.getAttribute('data-text').split('|');
+        heading.textContent = text[0];
+        paragraph.textContent = text[1];
+        // Reset the animation
+        heading.style.animation = 'none';
+        paragraph.style.animation = 'none';
         setTimeout(function() {
-          textContainer.style.animation = '';
+          heading.style.animation = '';
+          paragraph.style.animation = '';
         }, 10);
-        } else {
-          card.classList.remove('active');
-        }
-      });
-    }
+      } else {
+        card.classList.remove('active');
+      }
+    });
+  }
   
     updateCards();
   
