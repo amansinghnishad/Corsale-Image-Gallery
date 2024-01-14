@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
   document.addEventListener('DOMContentLoaded', function() {
     var cards = Array.from(document.querySelectorAll('.card'));
     var activeCardIndex = 0;
+    var textContainer = document.getElementById('text-container');
   
     function updateCards() {
       cards.forEach(function(card, index) {
@@ -21,6 +22,23 @@ document.addEventListener('DOMContentLoaded', function() {
           document.body.style.backgroundPosition = 'center'; // Center the image
           document.body.style.backgroundRepeat = 'no-repeat'; // Do not repeat the image
           card.classList.add('active');
+        } else {
+          card.classList.remove('active');
+        }
+      });
+    }
+
+
+
+    function updateCards() {
+      cards.forEach(function(card, index) {
+        if (index === activeCardIndex) {
+          card.classList.add('active');
+          textContainer.textContent = card.getAttribute('data-text');
+          textContainer.style.animation = 'none';
+        setTimeout(function() {
+          textContainer.style.animation = '';
+        }, 10);
         } else {
           card.classList.remove('active');
         }
