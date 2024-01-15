@@ -34,23 +34,31 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateCards() {
       cards.forEach(function(card, index) {
         if (index === activeCardIndex) {
+          var imgSrc = card.querySelector('img').src;
+          var bgImgSrc = card.getAttribute('data-bg');
+          // Check
+          if (window.matchMedia("(min-width: 768px)").matches) {
+            // for desktop
+            document.body.style.backgroundImage = 'url(' + bgImgSrc + ')';
+          } else {
+            // for mobile
+            document.body.style.backgroundImage = 'url(' + imgSrc + ')';
+          }
           card.classList.add('active');
           var text = card.getAttribute('data-text').split('|');
-        heading.textContent = text[0];
-        paragraph.textContent = text[1];
-        
-        
-        heading.style.animation = 'none';
-        paragraph.style.animation = 'none';
-        setTimeout(function() {
-          heading.style.animation = '';
-          paragraph.style.animation = '';
-        }, 10);
-      } else {
-        card.classList.remove('active');
-      }
-    });
-  }
+          heading.textContent = text[0];
+          paragraph.textContent = text[1];
+          heading.style.animation = 'none';
+          paragraph.style.animation = 'none';
+          setTimeout(function() {
+            heading.style.animation = '';
+            paragraph.style.animation = '';
+          }, 10);
+        } else {
+          card.classList.remove('active');
+        }
+      });
+    }
   
     updateCards();
   
