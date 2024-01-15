@@ -19,9 +19,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (index === activeCardIndex) {
           var imgSrc = card.querySelector('img').src;
           document.body.style.backgroundImage = 'url(' + imgSrc + ')';
-          document.body.style.backgroundSize = 'cover'; // Cover the entire screen
-          document.body.style.backgroundPosition = 'center'; // Center the image
-          document.body.style.backgroundRepeat = 'no-repeat'; // Do not repeat the image
+          document.body.style.backgroundSize = 'cover'; 
+          document.body.style.backgroundPosition = 'center'; 
+          document.body.style.backgroundRepeat = 'no-repeat'; 
           card.classList.add('active');
         } else {
           card.classList.remove('active');
@@ -38,7 +38,8 @@ document.addEventListener('DOMContentLoaded', function() {
           var text = card.getAttribute('data-text').split('|');
         heading.textContent = text[0];
         paragraph.textContent = text[1];
-        // Reset the animation
+        
+        
         heading.style.animation = 'none';
         paragraph.style.animation = 'none';
         setTimeout(function() {
